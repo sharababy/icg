@@ -3,7 +3,7 @@
 - [x]	DDA Algo 
 - [x]	Bressenhams Line
 - [x]	Bressenhams Circle
-- [ ]	Bayers Demosaicing Algo
+- [x]	Bayers Demosaicing Algo
 - [ ]	C Curve - Fractal
 - [ ]	Snowflake - Fractal
 - [ ]	IIITDM Front Drawing
