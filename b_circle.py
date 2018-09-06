@@ -1,4 +1,4 @@
-# Assignment 2 , Submission by Vedant Bassi , Ced15i013
+# Assignment 3 , Submission by Vedant Bassi , Ced15i013
 
 # Draw a straight line using Bresenham's Circle Algorithm 
 
