@@ -1,8 +1,0 @@
-*	DDA Algo
-*	Bressenhams Line
-*	Bressenhams Circle
-	Bayers Demosaicing Algo
-	C Curve - Fractal
-	Snowflake - Fractal
-	IIITDM Front Drawing
-	Dancing Animation
