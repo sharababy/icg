@@ -4,7 +4,7 @@
 - [x]	Bressenhams Line
 - [x]	Bressenhams Circle
 - [x]	Bayers Demosaicing Algo
-- [ ]	C Curve - Fractal
+- [x]	C Curve - Fractal
 - [ ]	Snowflake - Fractal
 - [ ]	IIITDM Front Drawing
-- [ ]	Dancing Animation
+- [x]	Dancing Animation

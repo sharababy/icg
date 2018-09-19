@@ -151,13 +151,9 @@ def genColors():
 		w=0
 		q += 1
 		p=0
-
+	pygame.display.update()
 
 genColors()
-# print(np.asarray(patt))
-pygame.display.update()
-
-
 
 
 while 1:
@@ -167,6 +163,10 @@ while 1:
 
 		elif event.type == pygame.KEYDOWN:
 			demosaic()
+
+		elif event.type == pygame.KEYUP:
+			genColors()
+			
 
 
 
