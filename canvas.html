@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>
+	Assignment Submission by Vedant Bassi , CED15I013
+</h1>
+<canvas id="myCanvas" width="1000" height="1000" style="border:1px solid #000000;">
+
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+
+<script type="text/javascript">
+	
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(10,10,200,150);
+
+ctx.fillStyle = "#00FF00";
+ctx.fillRect(25,25,170,120);
+
+ctx.fillStyle = "#0000FF";
+ctx.fillRect(40,40,140,90);
+
+
+ctx.beginPath();
+ctx.arc(400,90,40,0,2*Math.PI);
+ctx.stroke();
+ctx.fillStyle = "#aaa";
+ctx.fill();
+
+ctx.beginPath();
+ctx.arc(490,100,20,0,2*Math.PI);
+ctx.stroke();
+ctx.fillStyle = "#ccc";
+ctx.fill();
+
+ctx.beginPath();
+ctx.arc(490,170,30,0,2*Math.PI);
+ctx.stroke();
+ctx.fillStyle = "#999";
+ctx.fill();
+
+ctx.beginPath();
+ctx.arc(540,40,30,0,2*Math.PI);
+ctx.stroke();
+ctx.fillStyle = "#ddd";
+ctx.fill();
+
+ctx.beginPath();
+ctx.arc(480,30,25,0,2*Math.PI);
+ctx.stroke();
+ctx.fillStyle = "#787878";
+ctx.fill();
+
+ctx.beginPath();
+ctx.arc(550,120,15,0,2*Math.PI);
+ctx.stroke();
+ctx.fillStyle = "#d9d9d9";
+ctx.fill();
+
+
+ctx.fillStyle = "#E63462";
+ctx.fillRect(10,300,200,150);
+
+ctx.fillStyle = "#FFE66D";
+ctx.fillRect(40,240,200,150);
+
+ctx.fillStyle = "#F38D68";
+ctx.fillRect(40,300,170,90);
+
+ctx.fillStyle = "#00C4B7";
+ctx.fillRect(140,360,200,150);
+
+ctx.fillStyle = "#737C8D";
+ctx.fillRect(140,390,70,60);
+
+ctx.fillStyle = "#80D592";
+ctx.fillRect(210,360,30,30);
+
+ctx.fillStyle = "#7AA990";
+ctx.fillRect(140,360,70,30);
+
+
+
+ctx.beginPath();
+ctx.arc(550,320,65,0,2*Math.PI);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.arc(550,325,35,Math.PI/9,Math.PI-Math.PI/9);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.arc(525,300,5,0,2*Math.PI);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.arc(570,300,5,0,2*Math.PI);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(550,310);
+ctx.lineTo(545,325);
+ctx.lineTo(555,325);
+ctx.stroke();
+
+</script>
+
+</body>
+</html>
