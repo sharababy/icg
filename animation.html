@@ -1,7 +1,27 @@
 <script src="gl-matrix.js"></script>
+
+<head>
+  <style type="text/css">
+    #textCanvas{
+      display: none;
+      position: fixed;
+      top:380px;
+      left:830px;
+      z-index: 10;
+      background: #fff;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+  </style>
+</head>
+
 <body>
 
   <canvas id="glCanvas" width="1340" height="580"></canvas>
+
+  <canvas id="textCanvas" width="150" height="40"></canvas>
+
 </body>
 
 
@@ -112,9 +132,11 @@ function main() {
   var planezoom_step = 0.02
 
 
-  var boatx = -5,boatx_step = 0.01
-  var boaty = -5,boaty_step = 0.01
+  var boatx = -8,boatx_step = 0.01
+  var boaty = -8,boaty_step = 0.01
 
+  var boat_state = 0
+  var boat_ossc = 0
 
   function render(now) {
     // now *= 0.001;  // convert to seconds
@@ -152,17 +174,44 @@ function main() {
       boaty += boaty_step
 
 
-      if (boatx >= 5) {
-        boatx_step = 0
-        
+      if (boatx > 5 && boat_state == 0) {
+        boatx_step = 0.004
+        // boatx = 5
+        boaty_step = -0.004
+        boat_state = 1
       }
-      if (boaty >= -1 ) {
-        boaty_step = 0
-        
+      if (boaty > -1 && boat_state == 0) {
+        boaty = -1
       }
-    }
-    
 
+      if ((boatx > 9 || boaty > -0.5) && boat_state == 2 ) {
+        boatx_step = -boatx_step
+        boaty_step = -boaty_step
+        boat_state = 3
+      }
+
+      if (boatx > 7 && boat_state == 1) {
+        boaty_step = 0.004
+        boat_state = 2
+      }
+
+      if (boaty < -2 && boat_state == 1) {
+        boaty_step = 0
+      }
+
+      if ( boatx < 6 && boaty < -1 && boat_state == 3 ) {
+        boatx_step = 0
+        boaty_step = 0
+        boat_state = 4
+      }
+
+      if (boat_state == 4){
+        
+        displayMessage()
+      }
+      
+
+    }
 
 
     requestAnimationFrame(render);
@@ -174,6 +223,23 @@ function main() {
 
 var hzoom = 90
 var step = 0.1 
+
+
+
+function displayMessage(){
+
+  var overCanvas = document.getElementById("textCanvas");
+  overCanvas.style.display = "block"
+  var ctx = overCanvas.getContext("2d");
+
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  // ctx.fillStyle = 'white';
+  ctx.font="18px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText("No Survivors.", 75, 25);
+
+}
+
 
 
 function drawhouse(gl, programInfo){
