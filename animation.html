@@ -1,7 +1,7 @@
 <script src="gl-matrix.js"></script>
 <body>
 
-  <canvas id="glCanvas" width="1240" height="580"></canvas>
+  <canvas id="glCanvas" width="1340" height="580"></canvas>
 </body>
 
 
@@ -112,6 +112,10 @@ function main() {
   var planezoom_step = 0.02
 
 
+  var boatx = -5,boatx_step = 0.01
+  var boaty = -5,boaty_step = 0.01
+
+
   function render(now) {
     // now *= 0.001;  // convert to seconds
     // drawhouse(gl, programInfo)
@@ -126,9 +130,9 @@ function main() {
 
     if (planex > 1){
       planey -= planey_step
-      planex_step += 0.0015
-      planey_step += 0.0005
-      planeang += 0.0015
+      planex_step += 0.0013
+      planey_step += 0.0008
+      planeang += 0.002
       planezoom -= planezoom_step
     }
 
@@ -136,13 +140,28 @@ function main() {
       planex = -32
     }
 
-    if (planey < 2) {
-      planey = 2
+    if (planey < 0) {
+      planey = 0
       planex_step = 0
       planezoom_step = 0.0
-      setTimeout(drawMan,1000,gl, programInfo,planey,planex)
-    }
 
+      drawBoat(gl, programInfo,boatx,boaty)    
+      
+
+      boatx += boatx_step
+      boaty += boaty_step
+
+
+      if (boatx >= 5) {
+        boatx_step = 0
+        
+      }
+      if (boaty >= -1 ) {
+        boaty_step = 0
+        
+      }
+    }
+    
 
 
 
@@ -241,13 +260,86 @@ function drawHuman(gl, programInfo){
 }
 
 
-function drawMan(gl, programInfo,planey,planex){
+function drawBoat(gl, programInfo,x,y){
 
+  positions = [
+     0.98,  0.25,
+    -1.02,  0.25,
+     0.72, -0.25,
+    -0.72, -0.25,
+  ];
+
+  var colors = [
+    0.13,  0.23,  0.22,  1.0,    // white
+    0.13,  0.23,  0.22,  1.0,    // red
+    0.13,  0.23,  0.22,  1.0,    // green
+    0.13,  0.23,  0.22,  1.0,    // blue
+  ];
   
+  buffers = initBuffers(gl,positions,colors);
+
+  drawScene(gl, programInfo, buffers,0,0,161,3.14*0,[ x , y,-0.9]);
+
+
+
+  positions = [
+     0.05,  0.16,
+    -0.05,  0.16,
+     0.05, -0.16,
+    -0.05, -0.16,
+  ];
+
+  var colors = [
+    0.99,  0.99,  0.99,  1.0,    // white
+    0.99,  0.99,  0.99,  1.0,    // red
+    0.99,  0.99,  0.99,  1.0,    // green
+    0.99,  0.99,  0.99,  1.0,    // blue
+  ];
+
+  buffers = initBuffers(gl,positions,colors);
+
+  drawScene(gl, programInfo, buffers,0,0,161,3.14*0,[ x , y,-0.9]);  
+
+  positions = [
+     0.16,  0.05,
+    -0.16,  0.05,
+     0.16, -0.05,
+    -0.16, -0.05,
+  ];
+
+  var colors = [
+    0.99,  0.99,  0.99,  1.0,    // white
+    0.99,  0.99,  0.99,  1.0,    // red
+    0.99,  0.99,  0.99,  1.0,    // green
+    0.99,  0.99,  0.99,  1.0,    // blue
+  ];
+
+  buffers = initBuffers(gl,positions,colors);
+
+  drawScene(gl, programInfo, buffers,0,0,161,3.14*0,[ x , y,-0.9]);
+
+
+
+  positions = [
+     0.3,  -0.6,
+    -0.3,  0.6,
+     0.3, -0.6,
+    -0.3, -0.6,
+  ];
+
+  var colors = [
+    0.7,  0.7,  0.7,  1.0,    // white
+    0.7,  0.7,  0.7,  1.0,    // red
+    0.7,  0.7,  0.7,  1.0,    // green
+    0.7,  0.7,  0.7,  1.0,    // blue
+  ];
+
+  buffers = initBuffers(gl,positions,colors);
+
+  drawScene(gl, programInfo, buffers,0,0,161,3.14*0,[ x+0.16 , y+0.85,-0.9]);
+
 
 }
-
-
 
 
 function drawBackground(gl, programInfo){
@@ -296,8 +388,16 @@ function drawBackground(gl, programInfo){
 
 
   drawSun(gl, programInfo)
-  
+
+  drawWater(gl, programInfo)
+
+
 }
+
+
+
+
+
 
 var sunrot = 0.0
 
@@ -325,6 +425,64 @@ function drawSun(gl, programInfo){
 
   sunrot += 0.005
 }
+
+
+var c_gtl = 0.8
+var c_gbr_step = 0.001
+var c_gtl_step = 0.001
+var c_gbr = 0.2
+var waverot = 0
+
+
+var wavez_step = 0.001
+var wavez_min = 0.5
+var wavez_max = 2
+var wavez = wavez_min+0.1
+
+var wavex_step = 0.05
+var wavex_min = -4
+var wavex_max = 4
+var wavex = wavex_min+0.1
+
+function drawWater(gl, programInfo){
+  positions = [
+     3.9,  1.0,
+    -3.9,  1.0,
+     3.6, -1.0,
+    -3.6, -1.0,
+  ];
+
+  var colors = [
+    0.2,  c_gtl,  0.99,  1.0,    // white
+    0.06,  c_gtl,  0.99,  1.0,    // red
+    0.06,  c_gbr,  0.99,  1.0,    // green
+    0.06,  c_gbr,  0.99,  1.0,    // blue
+  ];
+  
+  buffers = initBuffers(gl,positions,colors);
+
+  drawScene(gl, programInfo, buffers,0,0,120,3.14*0,[ 0 , -1.0,-1.0]);
+
+  c_gbr += c_gbr_step;
+  c_gtl += c_gtl_step;
+
+  if (c_gtl >= 0.8 || c_gtl <= 0.1){
+
+    c_gtl_step = -c_gtl_step
+    while(!c_gtl <= 0.8 && !c_gtl >= 0.1){
+      c_gtl += c_gtl_step;      
+    }
+  }
+  if (c_gbr >= 0.8 || c_gbr <= 0.1){
+    c_gbr_step = -c_gbr_step
+    
+    while(!c_gbr <= 0.8 && !c_gbr >= 0.1){
+      c_gbr += c_gbr_step;      
+    }
+  }
+
+}
+
 
 
 function drawPlane(gl, programInfo,x,y,fov,ang){
