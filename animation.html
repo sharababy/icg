@@ -2,6 +2,9 @@
 
 <head>
   <style type="text/css">
+    body{
+      overflow: hidden;
+    }
     #textCanvas{
       display: none;
       position: fixed;
@@ -138,6 +141,13 @@ function main() {
   var boat_state = 0
   var boat_ossc = 0
 
+  var msg_top = 380;
+  var msg_left = 830;
+
+  var msg_top_step = 1;
+  var msg_left_step = 1;
+
+
   function render(now) {
     // now *= 0.001;  // convert to seconds
     // drawhouse(gl, programInfo)
@@ -207,7 +217,14 @@ function main() {
 
       if (boat_state == 4){
         
-        displayMessage()
+        displayMessage(msg_top,msg_left)
+        msg_top -= msg_top_step
+        msg_left -= msg_left_step
+
+        if (msg_top < -20 && msg_left < -20){
+          msg_left_step = 0
+          msg_top_step = 0          
+        }
       }
       
 
@@ -226,7 +243,7 @@ var step = 0.1
 
 
 
-function displayMessage(){
+function displayMessage(top,left){
 
   var overCanvas = document.getElementById("textCanvas");
   overCanvas.style.display = "block"
@@ -237,6 +254,10 @@ function displayMessage(){
   ctx.font="18px Arial";
   ctx.textAlign = "center";
   ctx.fillText("No Survivors.", 75, 25);
+
+  
+  overCanvas.style.top = top
+  overCanvas.style.left = left
 
 }
 
@@ -494,21 +515,11 @@ function drawSun(gl, programInfo){
 
 
 var c_gtl = 0.8
-var c_gbr_step = 0.001
-var c_gtl_step = 0.001
+var c_gbr_step = 0.002
+var c_gtl_step = 0.002
 var c_gbr = 0.2
 var waverot = 0
 
-
-var wavez_step = 0.001
-var wavez_min = 0.5
-var wavez_max = 2
-var wavez = wavez_min+0.1
-
-var wavex_step = 0.05
-var wavex_min = -4
-var wavex_max = 4
-var wavex = wavex_min+0.1
 
 function drawWater(gl, programInfo){
   positions = [
