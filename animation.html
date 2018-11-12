@@ -40,6 +40,13 @@ main();
 var squareRotation = 0.0;
 
 
+var cubeRotation = 1.0;
+var cubeRotation_step = 0.005;
+
+var cubeRotationZ = 0.0;
+var cubeRotation_step_z = 0.001;
+
+
 function main() {
   const canvas = document.querySelector('#glcanvas');
   const gl = canvas.getContext('webgl');
@@ -143,8 +150,8 @@ function main() {
   var boat_state = 0
   var boat_ossc = 0
 
-  var msg_top = 380;
-  var msg_left = 830;
+  var msg_top = 320;
+  var msg_left = 1000;
 
   var msg_top_step = 1;
   var msg_left_step = 1;
@@ -203,8 +210,9 @@ function main() {
       if (boatx > 10 && boat_state == 1) {
         boaty_step = 0.00
         boatz_step = 0.0
-        boaty = -1
+        // boaty = -1
         boat_state = 2
+        cubeRotation_step = 0.002
       }
 
       if ((boatx > 16 || boaty > -1) && boat_state == 2 ) {
@@ -219,14 +227,18 @@ function main() {
         boatz_step = 0
       }
 
-      if ( boatx < 13 && boaty < -4 && boat_state == 3 ) {
-        boatx_step = 0
+      if (boaty < -2 && boat_state >= 3) {
         boaty_step = 0
-        boatz_step = 0
-        boat_state = 4
+        boat_state++
       }
 
-      if (boat_state == 4){
+      if ( boatx < 14 && boat_state >= 3 ) {
+        boatx_step = 0
+        boatz_step = 0
+        boat_state++
+      }
+
+      if (boat_state > 4){
         
         displayMessage(msg_top,msg_left)
         msg_top -= msg_top_step
@@ -238,8 +250,9 @@ function main() {
         }
       }
       
-
+      
     }
+    
 
 
     requestAnimationFrame(render);
@@ -358,11 +371,6 @@ function drawHuman(gl, programInfo){
 }
 
 
-var cubeRotation = 1.0;
-var cubeRotation_step = 0.005;
-
-var cubeRotationZ = 0.0;
-var cubeRotation_step_z = 0.001;
 
 function drawBoat(gl, programInfo,x,y,z){
 
