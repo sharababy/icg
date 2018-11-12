@@ -16,5 +16,5 @@
 - [x]	Saree Texture 
 - [x]	Cube Falling Under Gravity
 - [x]	Rotating cube with images
-- [ ]	Bouncing Ball
+- [x]	Bouncing Ball
 - [x]	2 Minute Animation
