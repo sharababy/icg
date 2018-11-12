@@ -14,7 +14,7 @@
 
   let marsImage = new Image()
   marsImage.src = './MainGate.jpg';
-  // marsImage.crossOrigin = "anonymous";
+  marsImage.crossOrigin = "anonymous";
   marsImage.onload = () => start();
 
   let vertexShaderSource = `
