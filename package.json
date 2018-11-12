@@ -1,0 +1,24 @@
+{
+  "name": "icg",
+  "version": "1.0.0",
+  "description": "## Python Codes - [x]\tDDA Algo  - [x]\tBressenhams Line - [x]\tBressenhams Circle - [x]\tBayers Demosaicing Algo - [x]\tC Curve - Fractal - [x]\tSnowflake - Fractal - [ ]\tIIITDM Front Drawing - [x]\tDancing Man Animation",
+  "main": "gl-matrix.js",
+  "scripts": {
+    "start":"node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharababy/icg.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sharababy/icg/issues"
+  },
+  "homepage": "https://github.com/sharababy/icg#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
