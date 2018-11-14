@@ -7,7 +7,7 @@
 - [x]	Bayers Demosaicing Algo
 - [x]	C Curve - Fractal
 - [x]	Snowflake - Fractal
-- [ ]	IIITDM Front Drawing
+- [x]	IIITDM Front Drawing
 - [x]	Dancing Man Animation
 
 
